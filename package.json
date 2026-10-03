@@ -1,0 +1,31 @@
+{
+  "name": "ai-agent-cli",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A TypeScript CLI AI agent built from scratch to explore agent loops, tool calling, context management, code execution, and human-in-the-loop workflows.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Usman-Ubaid/ai-agent-cli.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Usman-Ubaid/ai-agent-cli/issues"
+  },
+  "homepage": "https://github.com/Usman-Ubaid/ai-agent-cli#readme",
+  "dependencies": {
+    "@ai-sdk/openai": "^4.0.83",
+    "ai": "^7.0.127",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
