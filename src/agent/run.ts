@@ -1,5 +1,7 @@
 import "dotenv/config";
 import { generateText, type ModelMessage } from "ai";
+import { tools } from "./tools/index.ts";
+import { executeTool } from "./executeTools.ts";
 import { openai } from "@ai-sdk/openai";
 import { SYSTEM_PROMPT } from "./system/prompt";
 import { type AgentCallbacks } from "../types.ts";
@@ -11,13 +13,19 @@ export const runAgent = async (
   conversationHistory: ModelMessage[],
   callbacks: AgentCallbacks,
 ) => {
-  const { text } = await generateText({
+  const { text, toolCalls } = await generateText({
     model: openai(MODEL_NAME),
     prompt: userMessage,
-    system: SYSTEM_PROMPT,
+    instructions: SYSTEM_PROMPT,
+    tools,
   });
 
-  console.log(text);
+  console.log(text, toolCalls);
+
+  for (const tc of toolCalls) {
+    const result = await executeTool(tc.toolName, tc.input);
+    console.log(result);
+  }
 };
 
-runAgent("Hello! Can you hear me?");
+runAgent("What is the current date and time?");
